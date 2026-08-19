@@ -2,275 +2,49 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Paulo | Simulados 7º Ano</title>
-<style>
-:root{
-  --bg:#0b1020;--panel:#121a2d;--panel2:#18233a;--text:#edf2f7;--muted:#9fb0c8;
-  --blue:#63a4ff;--cyan:#6ee7f9;--green:#57d68d;--red:#ff7a90;--gold:#f6c85f;--line:#2a3855;
-}
-*{box-sizing:border-box}
-body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:
-radial-gradient(circle at 20% 0%,#18213a 0,transparent 35%),
-linear-gradient(180deg,#0b1020,#0e1528 55%,#0b1020);color:var(--text)}
-.wrap{max-width:980px;margin:auto;padding:28px 16px 60px}
-.hero{padding:34px 0 20px}
-.kicker{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--cyan);font-weight:800}
-h1{font-size:clamp(34px,6vw,58px);line-height:1.02;margin:8px 0 12px}
-.lead{max-width:760px;color:var(--muted);font-size:17px;line-height:1.6}
-.topgrid{display:grid;grid-template-columns:1.4fr .6fr;gap:14px;margin:24px 0}
-.panel{background:linear-gradient(180deg,rgba(24,35,58,.92),rgba(16,24,43,.96));border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:0 20px 50px rgba(0,0,0,.22)}
-.quote{font-size:15px;line-height:1.55;color:#dce6f5}
-.small{color:var(--muted);font-size:13px}
-.badgeRow{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
-.badge{border:1px solid var(--line);background:#10182b;padding:8px 10px;border-radius:999px;font-size:12px;color:#c9d5e8}
-.versions{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:18px 0 26px}
-.vbtn{background:#121a2d;border:1px solid var(--line);color:var(--text);padding:14px;border-radius:14px;font-weight:800;cursor:pointer}
-.vbtn.active{border-color:var(--blue);box-shadow:0 0 0 2px rgba(99,164,255,.15) inset;background:#172443}
-.stats{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0 22px}
-.stat{background:#10182b;border:1px solid var(--line);padding:9px 12px;border-radius:12px;color:#cbd7ea;font-size:13px}
-.sectionTitle{margin:28px 0 12px;font-size:20px;font-weight:900}
-.question{background:#11192c;border:1px solid var(--line);border-radius:16px;padding:18px;margin:12px 0}
-.qnum{font-size:12px;color:var(--cyan);font-weight:800;letter-spacing:.08em;text-transform:uppercase}
-.qtext{font-size:17px;font-weight:750;line-height:1.45;margin:6px 0 12px}
-.option{display:block;padding:11px 12px;border:1px solid #2a3855;border-radius:11px;margin:8px 0;background:#0f1729;cursor:pointer}
-.option:hover{border-color:#49658f;background:#121e34}
-.option input{margin-right:9px}
-.textans{width:100%;padding:12px;border-radius:10px;border:1px solid #3a4b6f;background:#0e1728;color:white;font-size:16px}
-.check{margin-top:12px;border:0;border-radius:10px;padding:10px 14px;background:#2c65d8;color:white;font-weight:800;cursor:pointer}
-.feedback{display:none;margin-top:12px;padding:11px 12px;border-radius:10px;font-weight:700;line-height:1.4}
-.ok{display:block;background:rgba(87,214,141,.12);color:#9af0ba;border:1px solid rgba(87,214,141,.32)}
-.no{display:block;background:rgba(255,122,144,.1);color:#ffacba;border:1px solid rgba(255,122,144,.3)}
-.warn{display:block;background:rgba(246,200,95,.1);color:#f8d989;border:1px solid rgba(246,200,95,.3)}
-.finish{width:100%;margin-top:22px;padding:16px;border:0;border-radius:13px;background:linear-gradient(90deg,#2563eb,#4f46e5);color:white;font-size:17px;font-weight:900;cursor:pointer}
-.result{display:none;margin-top:20px;text-align:center}
-.score{font-size:56px;font-weight:950;margin:8px 0}
-.bar{height:12px;background:#1b2740;border-radius:999px;overflow:hidden;margin:15px 0}.bar>div{height:100%;width:0;background:linear-gradient(90deg,#57d68d,#6ee7f9);transition:.5s}
-.footer{margin-top:30px;color:#7588a7;font-size:12px;text-align:center}
-@media(max-width:760px){.topgrid{grid-template-columns:1fr}.versions{grid-template-columns:repeat(2,1fr)}}
-</style>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<meta name="theme-color" content="#070b16">
+<title>Paulo | Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=2">
 </head>
 <body>
-<div class="wrap">
-<section class="hero">
-  <div class="kicker">7º ano • revisão inteligente</div>
-  <h1>Paulo, quatro simulados.<br>Um placar para evoluir.</h1>
-  <p class="lead">História e Inglês em formato interativo, com correção imediata, registro do melhor resultado e quatro versões diferentes para você não decorar alternativa. Aqui a ideia é treinar raciocínio, não apertar botão no automático.</p>
-</section>
 
-<div class="topgrid">
-  <div class="panel">
-    <div class="quote"><strong>Regra do jogo:</strong> errou, entende o motivo e segue. No mangá, ninguém fecha um arco importante sem tomar umas pancadas no caminho. No tênis também não existe partida sem erro não forçado.</div>
-    <div class="badgeRow">
-      <span class="badge">🏓 tênis de mesa</span>
-      <span class="badge">🎾 Sinner</span>
-      <span class="badge">🎾 Alcaraz</span>
-      <span class="badge">🏐 vôlei</span>
-      <span class="badge">📚 mangá</span>
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark">PA</span>
+    <div class="brand-txt">
+      <strong>PAULO</strong>
+      <span id="tb-rank">—</span>
     </div>
   </div>
-  <div class="panel">
-    <div class="small">MODO CASA</div>
-    <p style="margin:8px 0 0;line-height:1.5">Thays cobra o estudo. Seu pai faz cara séria. No fundo, os dois só querem ver você ficando cada vez mais afiado.</p>
+  <div class="tb-right">
+    <div class="tb-lvl">
+      <span class="tb-lvl-n" id="tb-level">1</span>
+      <span class="tb-lvl-l">LVL</span>
+    </div>
+    <div class="tb-xp">
+      <div class="tb-xp-bar"><i id="tb-xp-fill"></i></div>
+      <span class="tb-xp-txt" id="tb-xp-txt">0 / 300 XP</span>
+    </div>
   </div>
-</div>
+</header>
 
-<div class="versions" id="versions"></div>
-<div class="stats">
-  <div class="stat" id="best">Melhor nota: —</div>
-  <div class="stat" id="versionName">Versão 1</div>
-  <div class="stat">Meta recomendada: 80%+</div>
-</div>
+<main id="view" class="view"></main>
 
-<div id="quiz"></div>
-<button class="finish" onclick="finishQuiz()">FINALIZAR SIMULADO</button>
+<nav class="tabbar" id="tabbar"></nav>
 
-<div class="panel result" id="result">
-  <div class="small">PLACAR FINAL</div>
-  <div class="score" id="score">0%</div>
-  <div class="bar"><div id="bar"></div></div>
-  <div id="scoreText"></div>
-  <p id="finalMsg" style="font-size:17px;line-height:1.5"></p>
-</div>
+<div id="toast" class="toast"></div>
 
-<div class="footer">Feito para o Paulo • Goiânia • versão interativa</div>
-</div>
-
-<script>
-const sets = [
-{
-name:"Versão 1",
-questions:[
-["História","Em que ano Pedro Álvares Cabral chegou ao território que hoje corresponde ao Brasil?",["1492","1500","1502","1530"],1],
-["História","Qual era um objetivo central das Grandes Navegações portuguesas?",["Encontrar novas rotas comerciais para o Oriente","Encerrar o comércio marítimo","Criar Brasília","Tornar o Brasil independente"],0],
-["História","Por que a expressão “descobrimento do Brasil” é questionada por historiadores?",["Porque Cabral não existiu","Porque povos indígenas já habitavam o território","Porque o Brasil era francês","Porque Portugal chegou em 1600"],1],
-["História","O que eram as Capitanias Hereditárias?",["Faixas de terra administradas por donatários","Estados independentes","Terras apenas da Igreja","Áreas exclusivamente mineradoras"],0],
-["História","Como eram chamados os responsáveis pelas capitanias?",["Bandeirantes","Donatários","Jesuítas","Vice-reis"],1],
-["História","Por que a Coroa portuguesa criou as Capitanias Hereditárias?",["Para dividir custos e estimular a ocupação","Para abandonar o território","Para entregar o Brasil à Espanha","Para abolir o açúcar"],0],
-["História","Quais capitanias tiveram maior destaque inicial?",["Pernambuco e São Vicente","Goiás e Mato Grosso","Acre e Amazonas","Bahia e Brasília"],0],
-["História","Uma dificuldade das capitanias foi:",["Excesso de ferrovias","Falta de recursos e grande distância","Excesso de universidades","Industrialização acelerada"],1],
-["História","As Capitanias Hereditárias foram implantadas durante o reinado de:",["Dom João III","Dom Pedro II","Dom João VI","Dom Sebastião"],0],
-["História","Em que década começaram as Capitanias Hereditárias?",["1490","1530","1600","1700"],1],
-["Inglês","Choose the correct comparative: 'A cheetah is ___ than a dog.'",["fast","faster","fastest","the faster"],1],
-["Inglês","Choose the correct sentence.",["John is as tall as Peter.","John is as taller as Peter.","John is more tall as Peter.","John is tallest Peter."],0],
-["Inglês","Complete: 'This exercise is ___ difficult than the last one.'",["least","less","as","the less"],1],
-["Inglês","Complete: 'Mount Everest is ___ mountain in the world.'",["higher","the highest","more high","the higher"],1],
-["Inglês","Comparative of GOOD:",null,"better"],
-["Inglês","Comparative of BAD:",null,"worse"],
-["Inglês","Superlative of GOOD:",["better","best","the best","goodest"],2],
-["Inglês","What does 'out of the blue' mean?",["Unexpectedly","Very slowly","Feeling angry","Being outdoors"],0],
-["Inglês","What does 'green with envy' mean?",["Feeling jealous","Feeling sick","Feeling relaxed","Feeling tired"],0],
-["Inglês","What does 'once in a blue moon' mean?",["Every day","Very rarely","Every month","At night"],1]
-]},
-{
-name:"Versão 2",
-questions:[
-["História","Antes da chegada dos portugueses, o território brasileiro era habitado por:",["Diversos povos indígenas","Apenas portugueses","Somente espanhóis","Nenhuma população"],0],
-["História","A chegada da frota de Cabral ocorreu em:",["1500","1534","1549","1494"],0],
-["História","Qual produto ganhou grande importância econômica no início da colonização?",["Açúcar","Café","Borracha","Soja"],0],
-["História","O sistema de Capitanias Hereditárias transferia aos donatários a tarefa de:",["Administrar e desenvolver partes do território","Declarar independência","Criar uma nova monarquia","Extinguir a agricultura"],0],
-["História","A palavra 'hereditária' indica que a capitania:",["Poderia ser transmitida por herança","Era administrada por indígenas","Era temporária","Pertencia à Espanha"],0],
-["História","Um dos motivos para o baixo desempenho de várias capitanias foi:",["Falta de recursos e ataques","Excesso de indústrias","Muita população urbana","Ferrovias mal planejadas"],0],
-["História","Pernambuco teve destaque principalmente com a produção de:",["Açúcar","Café","Ouro","Algodão industrial"],0],
-["História","São Vicente destacou-se por:",["Ser uma das capitanias com maior sucesso inicial","Ser a capital do Brasil","Pertencer à França","Ser criada no século XIX"],0],
-["História","O sistema de capitanias buscava reforçar:",["A ocupação portuguesa do território","A independência indígena","A expansão inglesa","O fim do comércio atlântico"],0],
-["História","Qual alternativa melhor descreve o contexto das Grandes Navegações?",["Busca por comércio, rotas e expansão marítima","Fim das viagens oceânicas","Rejeição às especiarias","Isolamento europeu"],0],
-["Inglês","Complete: 'My sister is ___ than me.'",["taller","tallest","more tall","the tall"],0],
-["Inglês","Complete: 'This book is ___ interesting than that one.'",["more","most","the most","as more"],0],
-["Inglês","Equality comparison:",["as fast as","faster as","more fast as","as faster than"],0],
-["Inglês","Inferiority comparison:",["less expensive than","least expensive than","more less expensive","as expensive than"],0],
-["Inglês","Superlative of BAD:",null,"the worst"],
-["Inglês","Comparative of FAR can be:",["farther","farest","more far","farer"],0],
-["Inglês","Complete: 'She is ___ student in the class.'",["the best","better","good","the better"],0],
-["Inglês","'Feel blue' means:",["Feel sad","Feel excited","Feel hungry","Feel jealous"],0],
-["Inglês","'White lie' usually means:",["A harmless or small lie","A legal document","A serious crime","A joke about colors"],0],
-["Inglês","'Black sheep' usually refers to:",["Someone different from the rest of a group","The group leader","A lucky person","A very calm person"],0]
-]},
-{
-name:"Versão 3",
-questions:[
-["História","A expansão marítima portuguesa dos séculos XV e XVI estava ligada principalmente a:",["Interesses comerciais e marítimos","Industrialização pesada","Turismo","Produção de petróleo"],0],
-["História","A chegada portuguesa ao Brasil ocorreu durante o reinado de:",["Dom Manuel I","Dom Pedro I","Dom João VI","Dom Pedro II"],0],
-["História","A presença de povos indígenas antes de 1500 mostra que:",["O território já era habitado e possuía diversas culturas","O território estava vazio","Portugal fundou as primeiras aldeias indígenas","A Espanha controlava todo o litoral"],0],
-["História","As Capitanias Hereditárias foram criadas em:",["1534","1500","1549","1822"],0],
-["História","Os donatários recebiam da Coroa:",["Direitos e responsabilidades sobre uma faixa de terra","A independência política","O título de rei","O controle de Portugal"],0],
-["História","Uma finalidade das capitanias era:",["Estimular ocupação e colonização","Acabar com a navegação","Criar estados soberanos","Expulsar todos os colonos"],0],
-["História","A distância entre Portugal e a colônia dificultava:",["Administração e comunicação","Produção de mapas escolares","Uso de moedas digitais","Viagens de trem"],0],
-["História","Qual alternativa NÃO corresponde a uma dificuldade das capitanias?",["Excesso de industrialização","Poucos recursos","Grandes distâncias","Conflitos locais"],0],
-["História","Pernambuco e São Vicente são lembradas porque:",["Tiveram maior êxito inicial","Foram as únicas criadas","Viraram países independentes","Não tiveram colonização"],0],
-["História","O fracasso parcial das capitanias contribuiu para a criação posterior do:",["Governo-Geral","Império do Brasil","Estado Novo","Congresso Nacional"],0],
-["Inglês","Complete: 'Tennis is ___ difficult than table tennis for some beginners.'",["more","most","the most","as more"],0],
-["Inglês","Complete: 'This racket is ___ than that one.'",["lighter","lightest","more light","the lighter"],0],
-["Inglês","Choose the superlative.",["the fastest","faster","more fast","as fast as"],0],
-["Inglês","Choose the comparative of 'beautiful'.",["more beautiful","beautifuller","the beautiful","most beautiful"],0],
-["Inglês","Comparative of GOOD:",["better","best","gooder","the best"],0],
-["Inglês","Superlative of BAD:",["the worst","worse","badder","the baddest"],0],
-["Inglês","Complete: 'Carlos is as focused ___ Jannik.'",["as","than","more","most"],0],
-["Inglês","'Out of the blue' indicates something:",["unexpected","frequent","planned","boring"],0],
-["Inglês","'Green with envy' is related to:",["jealousy","sadness","sleep","hunger"],0],
-["Inglês","'Once in a blue moon' describes something that happens:",["rarely","daily","hourly","regularly"],0]
-]},
-{
-name:"Versão 4",
-questions:[
-["História","O chamado 'descobrimento' do Brasil pode ser melhor entendido também como:",["Encontro entre sociedades diferentes, com conflitos e impactos","Criação de um território vazio","Fim imediato da cultura indígena","Independência do Brasil"],0],
-["História","Cabral fazia parte do contexto histórico conhecido como:",["Grandes Navegações","Revolução Industrial","Guerra Fria","República Velha"],0],
-["História","As especiarias orientais eram importantes para os europeus porque:",["Tinham alto valor comercial","Eram usadas como moeda oficial","Substituíam metais preciosos","Eram produzidas no Brasil"],0],
-["História","O sistema de Capitanias Hereditárias dividiu o território em:",["Grandes faixas de terra","Municípios modernos","Estados federativos","Distritos industriais"],0],
-["História","Os donatários tinham como responsabilidade:",["Promover ocupação e exploração econômica","Declarar guerra a Portugal","Criar moeda própria","Abolir impostos reais"],0],
-["História","O modelo foi chamado de hereditário porque:",["Os direitos podiam passar aos herdeiros","Só idosos podiam administrar","As terras pertenciam a famílias indígenas","Era renovado anualmente"],0],
-["História","Qual alternativa apresenta duas capitanias de destaque?",["Pernambuco e São Vicente","Goiás e Acre","Amazonas e Bahia","Mato Grosso e Brasília"],0],
-["História","As dificuldades de várias capitanias mostraram que:",["A colonização exigia mais organização e apoio da Coroa","Portugal abandonaria a América","A mineração já dominava a economia","O Brasil seria independente em 1534"],0],
-["História","A criação do Governo-Geral buscou:",["Centralizar mais a administração colonial","Extinguir Portugal","Transferir a capital para Lisboa","Dar independência às capitanias"],0],
-["História","Qual sequência está correta?",["1500: chegada portuguesa; 1534: capitanias; 1549: Governo-Geral","1534: chegada; 1500: capitanias; 1822: Governo-Geral","1492: capitanias; 1500: independência; 1549: república","1549: chegada; 1534: independência; 1500: Governo-Geral"],0],
-["Inglês","Complete: 'A manga chapter can be ___ than the previous one.'",["more exciting","most exciting","excitinger","the exciting"],0],
-["Inglês","Complete: 'This serve is ___ than the last one.'",["better","best","gooder","the best"],0],
-["Inglês","Complete: 'That was ___ point of the match.'",["the best","better","good","more good"],0],
-["Inglês","Choose the equality structure.",["as strong as","stronger as","more strong as","as stronger than"],0],
-["Inglês","Choose the inferiority structure.",["less difficult than","least difficult than","lesser difficult as","as less difficult"],0],
-["Inglês","Write the comparative of BAD:",null,"worse"],
-["Inglês","Write the superlative of GOOD:",null,"the best"],
-["Inglês","'Feel blue' means:",["feel sad","feel jealous","feel angry","feel lucky"],0],
-["Inglês","'Out of the blue' means:",["unexpectedly","very often","carefully","slowly"],0],
-["Inglês","'Once in a blue moon' means:",["very rarely","every week","twice a day","every night"],0]
-]}
-];
-
-let current=0;
-function renderVersions(){
- const v=document.getElementById("versions"); v.innerHTML="";
- sets.forEach((s,i)=>{const b=document.createElement("button");b.className="vbtn"+(i===current?" active":"");b.textContent=s.name;b.onclick=()=>{current=i;renderVersions();renderQuiz();updateBest()};v.appendChild(b)})
- document.getElementById("versionName").textContent=sets[current].name;
-}
-const good=[
-"Acertou. Leitura limpa, decisão rápida.",
-"Boa. Esse ponto foi de primeira bola.",
-"Correto. Capítulo avançado sem filler.",
-"Acertou. Sólido como troca longa bem construída.",
-"Boa. A Thays não tem objeção nesta questão."
-];
-const bad=[
-"Não foi dessa vez. Revê o raciocínio e tenta de novo.",
-"Erro não forçado. Ajusta e joga o próximo ponto.",
-"Essa saiu por pouco. Sem drama, corrige a leitura.",
-"Plot twist ruim. Volta uma casa e entende a lógica.",
-"Seu pai fez cara séria por 2 segundos. Depois passa."
-];
-function pick(a){return a[Math.floor(Math.random()*a.length)]}
-function renderQuiz(){
- const root=document.getElementById("quiz"); root.innerHTML="";
- let last="";
- sets[current].questions.forEach((q,i)=>{
-   if(q[0]!==last){const h=document.createElement("div");h.className="sectionTitle";h.textContent=q[0]==="História"?"📚 História":"🇬🇧 Inglês";root.appendChild(h);last=q[0]}
-   const card=document.createElement("div");card.className="question";card.dataset.correct="false";card.dataset.answered="false";
-   let body=`<div class="qnum">Questão ${i+1}</div><div class="qtext">${q[1]}</div>`;
-   if(q[2]){
-     q[2].forEach((o,j)=>body+=`<label class="option"><input type="radio" name="q${current}_${i}" value="${j}">${o}</label>`);
-   }else{
-     body+=`<input class="textans" type="text" placeholder="Digite sua resposta">`;
-   }
-   body+=`<button class="check" onclick="checkQ(this,${i})">Verificar resposta</button><div class="feedback"></div>`;
-   card.innerHTML=body;root.appendChild(card);
- });
- document.getElementById("result").style.display="none";
-}
-function norm(t){return t.toLowerCase().trim().normalize("NFD").replace(/[\u0300-\u036f]/g,"")}
-function checkQ(btn,i){
- const card=btn.closest(".question"), q=sets[current].questions[i], f=card.querySelector(".feedback");
- let ok=false;
- if(q[2]){
-   const sel=card.querySelector("input:checked");
-   if(!sel){f.className="feedback warn";f.textContent="Escolha uma alternativa.";return}
-   ok=Number(sel.value)===q[3];
- }else{
-   const val=card.querySelector(".textans").value;
-   if(!val.trim()){f.className="feedback warn";f.textContent="Digite uma resposta.";return}
-   ok=norm(val)===norm(q[3]);
- }
- card.dataset.correct=ok?"true":"false";card.dataset.answered="true";
- f.className="feedback "+(ok?"ok":"no");f.textContent=ok?pick(good):pick(bad);
-}
-function updateBest(){
- const key="paulo_best_"+current;const val=localStorage.getItem(key);document.getElementById("best").textContent="Melhor nota: "+(val?val+"%":"—");
-}
-function finishQuiz(){
- const cards=[...document.querySelectorAll(".question")];
- const right=cards.filter(c=>c.dataset.correct==="true").length;
- const answered=cards.filter(c=>c.dataset.answered==="true").length;
- const pct=Math.round(right/cards.length*100);
- const key="paulo_best_"+current; const old=Number(localStorage.getItem(key)||0); if(pct>old)localStorage.setItem(key,pct);
- document.getElementById("score").textContent=pct+"%";document.getElementById("bar").style.width=pct+"%";
- document.getElementById("scoreText").innerHTML=`<strong>${right} de ${cards.length} acertos.</strong><br>${answered} questões verificadas.`;
- let msg="";
- if(pct===100) msg="Perfeito. Zero filler, zero desperdício. Pode encerrar o arco.";
- else if(pct>=90) msg="Excelente. Nível de quem chega no tie-break sabendo exatamente o que fazer.";
- else if(pct>=80) msg="Muito bom. Meta batida. Agora vale revisar apenas os erros.";
- else if(pct>=70) msg="Bom resultado. Faltou consistência em alguns pontos. Revise e tente outra versão.";
- else if(pct>=60) msg="Tem base, mas ainda está deixando ponto simples na mesa. Mais uma rodada.";
- else msg="Hora de revisar antes de insistir. Estudo bom também sabe a hora de voltar ao capítulo anterior.";
- document.getElementById("finalMsg").textContent=msg;document.getElementById("result").style.display="block";document.getElementById("result").scrollIntoView({behavior:"smooth"});updateBest();
-}
-renderVersions();renderQuiz();updateBest();
-</script>
+<script src="js/data-historia.js?v=2"></script>
+<script src="js/data-ingles.js?v=2"></script>
+<script src="js/data-reforco.js?v=2"></script>
+<script src="js/state.js?v=2"></script>
+<script src="js/analysis.js?v=2"></script>
+<script src="js/quiz.js?v=2"></script>
+<script src="js/panels.js?v=2"></script>
+<script src="js/app.js?v=2"></script>
 </body>
 </html>
