@@ -109,53 +109,75 @@ function startRecommended(){
 }
 
 /* ---------- MODO PROVA: só o conteúdo que cai na avaliação ---------- */
-function examTopics(){
+function examTopics(subject){
   const out=[];
   Object.keys(PROVA.topicos).forEach(s=>{
+    if(subject && s!==subject) return;
     PROVA.topicos[s].forEach(t=>{
       if(BANK.some(q=>q.s===s && q.t===t)) out.push(t);
     });
   });
   return out;
 }
-function examCount(diff){
-  const tp=examTopics(), d=DIFFS[diff];
-  return BANK.filter(q=>tp.includes(q.t) && q.lv>=d.lv[0] && q.lv<=d.lv[1]).length;
+function examCount(diff, subject){
+  const tp=examTopics(subject), d=DIFFS[diff];
+  return BANK.filter(q=>tp.includes(q.t) && (!subject || q.s===subject)
+                     && q.lv>=d.lv[0] && q.lv<=d.lv[1]).length;
+}
+function examTotal(subject){
+  return examCount('facil',subject)+examCount('medio',subject)+examCount('dificil',subject);
+}
+function examAcc(subject){
+  const tp=examTopics(subject);
+  let n=0, ok=0;
+  Object.keys(S.st.q).forEach(id=>{
+    const q=BYID[id]; if(!q || !tp.includes(q.t)) return;
+    if(subject && q.s!==subject) return;
+    const r=S.st.q[id]; n+=r.hist.length; ok+=r.hist.filter(e=>e.ok).length;
+  });
+  return n ? Math.round(ok/n*100) : null;
 }
 function daysToExam(){ return daysBetween(today(), PROVA.data); }
-function startExam(diff){
-  const n=Math.min(15, examCount(diff));
+function startExam(diff, subject){
+  const n=Math.min(15, examCount(diff, subject));
   if(!n){ toast('Ainda não há questões desse nível para a prova'); return; }
-  startQuiz({diff:diff, subject:null, topics:examTopics(), strict:true, n:n, exam:true});
+  startQuiz({diff:diff, subject:subject||null, topics:examTopics(subject),
+             strict:true, n:n, exam:true});
 }
 function examPanel(){
   const dias=daysToExam();
   const quando = dias>1 ? 'em '+dias+' dias' : dias===1 ? 'amanhã' : dias===0 ? 'hoje' : null;
-  if(quando===null) return '';   // prova já passou: some da tela
-  const acc=(()=>{
-    const tp=examTopics();
-    let n=0, ok=0;
-    Object.keys(S.st.q).forEach(id=>{
-      const q=BYID[id]; if(!q || !tp.includes(q.t)) return;
-      const r=S.st.q[id]; n+=r.hist.length; ok+=r.hist.filter(e=>e.ok).length;
-    });
-    return n ? Math.round(ok/n*100) : null;
-  })();
+  if(quando===null) return '';   /* prova já passou: some da tela */
+  const acc=examAcc();
+
   let h='<div class="panel" style="border-color:rgba(244,63,94,.45);background:'
    + 'radial-gradient(600px 180px at 85% -20%,rgba(244,63,94,.16),transparent 65%),linear-gradient(180deg,#1a1626,#0e1526)">'
    + '<div class="panel-t"><span>'+PROVA.nome+'</span><span class="tag hard">'+quando.toUpperCase()+'</span></div>'
-   + '<p class="page-sub">Só o conteúdo da avaliação: Time telling, Sense of time, Double comparative, '
-   + 'Comparatives, Body Art e Plastic Surgery. Nada fora disso entra.</p>';
-  if(acc!==null) h+='<div class="grid g2 mt">'
-   + statCard('Acerto no conteúdo da prova', acc+'%', 'nas questões já respondidas', acc>=80?'v-green':acc>=60?'v-amber':'v-red')
-   + statCard('Questões disponíveis', examCount('facil')+examCount('medio')+examCount('dificil'), 'no banco da prova', 'v-blue')
+   + '<p class="page-sub">Só o conteúdo da avaliação. <b>História:</b> Povos Pré-Colombianos (Maias, Astecas e Incas). '
+   + '<b>Inglês:</b> Time telling, Sense of time, Double comparative, Comparatives, Body Art e Plastic Surgery. '
+   + 'Nada fora disso entra no sorteio.</p>';
+
+  h+='<div class="grid g2 mt">'
+   + statCard('Acerto no conteúdo da prova', acc===null?'—':acc+'%',
+       acc===null?'ainda sem respostas':'nas questões já respondidas',
+       acc===null?'v-muted':acc>=80?'v-green':acc>=60?'v-amber':'v-red')
+   + statCard('Questões disponíveis', examTotal(), 'nas duas matérias', 'v-blue')
    + '</div>';
-  h+='<div class="btnrow mt">'
-   + '<button class="btn sm" onclick="startExam(\'facil\')">Fácil · '+examCount('facil')+'</button>'
-   + '<button class="btn sm" onclick="startExam(\'medio\')">Médio · '+examCount('medio')+'</button>'
-   + '<button class="btn sm" onclick="startExam(\'dificil\')">Difícil · '+examCount('dificil')+'</button>'
-   + '</div>'
-   + '<div class="btnrow mt"><button class="btn primary wide" onclick="startExam(\'medio\')">Treinar para a prova</button></div>'
+
+  SUBJECTS.forEach(s=>{
+    const a=examAcc(s);
+    h+='<div class="mt"><div class="qprog-t" style="margin-bottom:6px">'
+     + '<span><b>'+s+'</b> · '+examTotal(s)+' questões</span>'
+     + '<span class="num '+(a===null?'v-muted':a>=80?'v-green':a>=60?'v-amber':'v-red')+'">'+(a===null?'—':a+'%')+'</span></div>'
+     + '<div class="btnrow">'
+     + '<button class="btn sm" onclick="startExam(&quot;facil&quot;,&quot;'+s+'&quot;)">Fácil · '+examCount('facil',s)+'</button>'
+     + '<button class="btn sm" onclick="startExam(&quot;medio&quot;,&quot;'+s+'&quot;)">Médio · '+examCount('medio',s)+'</button>'
+     + '<button class="btn sm" onclick="startExam(&quot;dificil&quot;,&quot;'+s+'&quot;)">Difícil · '+examCount('dificil',s)+'</button>'
+     + '</div></div>';
+  });
+
+  h+='<div class="btnrow mt"><button class="btn primary wide" onclick="startExam(&quot;medio&quot;)">'
+   + 'Simulado geral da prova · as duas matérias</button></div>'
    + '</div>';
   return h;
 }
