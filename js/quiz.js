@@ -19,6 +19,9 @@ function shuffle(a){
 function norm(t){
   return String(t).toLowerCase().trim()
     .normalize('NFD').replace(new RegExp('[\u0300-\u036f]','g'),'')
+    /* teclado de celular troca ' por aspa curva: sem isso, "It's" seria
+       marcado como erro s\u00f3 por causa do caractere */
+    .replace(new RegExp('[\u2018\u2019\u00b4`]','g'),"'")
     .replace(/[.!?;,]+$/,'').replace(/\s+/g,' ');
 }
 
@@ -33,7 +36,9 @@ function pickQuestions(opt){
   });
   if(opt.topics && opt.topics.length){
     const t=pool.filter(q=>opt.topics.includes(q.t));
-    if(t.length>=4) pool=t;
+    /* no modo Prova o filtro é obrigatório: não pode entrar conteúdo
+       que não cai na avaliação, mesmo que sobrem poucas questões */
+    if(opt.strict || t.length>=4) pool=t;
   }
   /* prioriza: erro pendente > nunca vista > vista há mais tempo */
   pool.forEach(q=>{

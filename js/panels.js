@@ -43,6 +43,9 @@ function viewHome(){
   }
   h+='</div>';
 
+  /* prova próxima entra antes de tudo */
+  h+=examPanel();
+
   /* estado geral */
   h+='<div class="panel"><div class="situ">'
    + '<div class="situ-l '+sit.cor+'">'+sit.ico+'</div>'
@@ -104,6 +107,58 @@ function startRecommended(){
   const r=recommendation();
   startQuiz({diff:r.diff, subject:r.subject, topics:r.topics, n:r.n});
 }
+
+/* ---------- MODO PROVA: só o conteúdo que cai na avaliação ---------- */
+function examTopics(){
+  const out=[];
+  Object.keys(PROVA.topicos).forEach(s=>{
+    PROVA.topicos[s].forEach(t=>{
+      if(BANK.some(q=>q.s===s && q.t===t)) out.push(t);
+    });
+  });
+  return out;
+}
+function examCount(diff){
+  const tp=examTopics(), d=DIFFS[diff];
+  return BANK.filter(q=>tp.includes(q.t) && q.lv>=d.lv[0] && q.lv<=d.lv[1]).length;
+}
+function daysToExam(){ return daysBetween(today(), PROVA.data); }
+function startExam(diff){
+  const n=Math.min(15, examCount(diff));
+  if(!n){ toast('Ainda não há questões desse nível para a prova'); return; }
+  startQuiz({diff:diff, subject:null, topics:examTopics(), strict:true, n:n, exam:true});
+}
+function examPanel(){
+  const dias=daysToExam();
+  const quando = dias>1 ? 'em '+dias+' dias' : dias===1 ? 'amanhã' : dias===0 ? 'hoje' : null;
+  if(quando===null) return '';   // prova já passou: some da tela
+  const acc=(()=>{
+    const tp=examTopics();
+    let n=0, ok=0;
+    Object.keys(S.st.q).forEach(id=>{
+      const q=BYID[id]; if(!q || !tp.includes(q.t)) return;
+      const r=S.st.q[id]; n+=r.hist.length; ok+=r.hist.filter(e=>e.ok).length;
+    });
+    return n ? Math.round(ok/n*100) : null;
+  })();
+  let h='<div class="panel" style="border-color:rgba(244,63,94,.45);background:'
+   + 'radial-gradient(600px 180px at 85% -20%,rgba(244,63,94,.16),transparent 65%),linear-gradient(180deg,#1a1626,#0e1526)">'
+   + '<div class="panel-t"><span>'+PROVA.nome+'</span><span class="tag hard">'+quando.toUpperCase()+'</span></div>'
+   + '<p class="page-sub">Só o conteúdo da avaliação: Time telling, Sense of time, Double comparative, '
+   + 'Comparatives, Body Art e Plastic Surgery. Nada fora disso entra.</p>';
+  if(acc!==null) h+='<div class="grid g2 mt">'
+   + statCard('Acerto no conteúdo da prova', acc+'%', 'nas questões já respondidas', acc>=80?'v-green':acc>=60?'v-amber':'v-red')
+   + statCard('Questões disponíveis', examCount('facil')+examCount('medio')+examCount('dificil'), 'no banco da prova', 'v-blue')
+   + '</div>';
+  h+='<div class="btnrow mt">'
+   + '<button class="btn sm" onclick="startExam(\'facil\')">Fácil · '+examCount('facil')+'</button>'
+   + '<button class="btn sm" onclick="startExam(\'medio\')">Médio · '+examCount('medio')+'</button>'
+   + '<button class="btn sm" onclick="startExam(\'dificil\')">Difícil · '+examCount('dificil')+'</button>'
+   + '</div>'
+   + '<div class="btnrow mt"><button class="btn primary wide" onclick="startExam(\'medio\')">Treinar para a prova</button></div>'
+   + '</div>';
+  return h;
+}
 function startBoss(){
   if(!bossUnlocked().ok){ toast('Boss ainda bloqueado'); return; }
   startQuiz({boss:true, diff:'boss', subject:null, n:12});
@@ -119,6 +174,8 @@ function viewTrain(){
   h+='<div class="page-head"><div class="kicker">Treino</div>'
    + '<h1 class="page-title">Escolha o campo de batalha</h1>'
    + '<p class="page-sub">A dificuldade muda de verdade: não são as mesmas perguntas com outras palavras.</p></div>';
+
+  h+=examPanel();
 
   h+='<div class="panel"><div class="panel-t">Matéria</div><div class="chips">'
    + '<button class="chip'+(trainSubject===null?' on':'')+'" onclick="setTrainSubject(null)">Todas</button>';
